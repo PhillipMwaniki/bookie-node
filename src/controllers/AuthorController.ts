@@ -1,15 +1,13 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from '../database/data-source';
 import { Author } from '../entities/Author';
+import { ResponseUtil } from '../../utils/Response';
 
 export default class AuthorController {
     async getAuthors(req: Request, res: Response) {
         const authors = await AppDataSource.getRepository(Author).find();
 
-        return res.status(200).json({
-            success: true,
-            data: authors
-        });
+        return ResponseUtil.sendSuccessfulResponse<Author[]>(res, "Fetch Authors Successful", authors)
      }
 
      async getAuthor(req: Request, res: Response) {
@@ -18,9 +16,6 @@ export default class AuthorController {
                         .getRepository(Author)
                         .findOneByOrFail({ id: Number(id) });
 
-        return res.status(200).json({
-            success: true,
-            data: author
-        });
+        return ResponseUtil.sendSuccessfulResponse<Author>(res, "Fetch Author Successful", author)
      }
 }
