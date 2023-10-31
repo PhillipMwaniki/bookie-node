@@ -11,4 +11,16 @@ export default class AuthorController {
             data: authors
         });
      }
+
+     async getAuthor(req: Request, res: Response) {
+        const {id} = req.params;
+        const author = await AppDataSource
+                        .getRepository(Author)
+                        .findOneByOrFail({ id: Number(id) });
+
+        return res.status(200).json({
+            success: true,
+            data: author
+        });
+     }
 }
