@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../database/data-source";
 import { Author } from "../entities/Author";
-import { ResponseUtil } from "../../utils/Response";
+import { ResponseUtil } from "../utils/Response";
 import { Paginator } from "../database/Paginator";
+import { CreateAuthorDTO } from '../dtos/CreateAuthorDTO';
+import { validate, validateOrReject } from "class-validator";
 
 export default class AuthorController {
   async getAuthors(req: Request, res: Response) {
@@ -37,6 +39,15 @@ export default class AuthorController {
 
   async create(req: Request, res: Response): Promise<Response> {
     const authorData = req.body;
+    authorData.image = req.file?.filename
+    const dto = new CreateAuthorDTO();
+    Object.assign(dto, authorData);
+
+    const errors = await validate(dto);
+
+    if (errors.length > 0) {
+      return ResponseUtil.sendErrorResponse(res, "Invalid data", 422, errors);
+    }
 
     const repo = AppDataSource.getRepository(Author);
     const author = repo.create(authorData);

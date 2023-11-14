@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import authorsRoute from "./routes/authors";
 import { EntityNotFoundError } from "typeorm";
-import { ResponseUtil } from "../utils/Response";
+import { ResponseUtil } from "./utils/Response";
 import { log } from "console";
 
 const app: Express = express();
