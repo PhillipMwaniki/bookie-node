@@ -1,10 +1,8 @@
-import express, { Express, NextFunction, Request, Response } from "express";
+import express, { Express, Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import authorsRoute from "./routes/authors";
-import { EntityNotFoundError } from "typeorm";
-import { ResponseUtil } from "./utils/Response";
-import { log } from "console";
+import { ErrorHandler } from "./middlewares/ErrorHandler";
 
 const app: Express = express();
 
@@ -21,21 +19,6 @@ app.use("*", (req: Request, res: Response) => {
   });
 });
 
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  console.log(err);
-  if (err instanceof EntityNotFoundError) {
-    console.log(err);
-    return ResponseUtil.sendErrorResponse(res, "Resource not found", 404, null);
-  }
-
-  if (err.message === "Invalid file type") {
-    return ResponseUtil.sendErrorResponse(res, "Invalid file type", 422, null);
-  }
-
-  return res.status(500).send({
-    success: false,
-    message: "Something went wrong",
-  });
-});
+app.use(ErrorHandler.handleErrors);
 
 export default app;
