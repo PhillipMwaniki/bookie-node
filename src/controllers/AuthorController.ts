@@ -92,4 +92,14 @@ export default class AuthorController {
       201,
     );
   }
+
+  async delete(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const repo = AppDataSource.getRepository(Author);
+    const author = await repo.findOneByOrFail({
+      id: Number(id),
+    });
+    await repo.remove(author);
+    return ResponseUtil.sendSuccessfulResponse(res, "Successfully deleted the author", null);
+  }
 }

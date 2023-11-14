@@ -19,5 +19,6 @@ router.put(
   FileUploader.upload("image", "authors", 2 * 1024 * 1024),
   ErrorHandler.handleErrors(authorController.update),
 );
+router.delete("/:id", ErrorHandler.handleErrors(authorController.delete));
 
 export default router;
