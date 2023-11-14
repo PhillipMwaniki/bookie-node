@@ -2,7 +2,7 @@ import express, { Express, Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import authorsRoute from "./routes/authors";
-import { ErrorHandler } from "./middlewares/ErrorHandler";
+import { ErrorHandler } from "./http/middlewares/ErrorHandler";
 
 const app: Express = express();
 

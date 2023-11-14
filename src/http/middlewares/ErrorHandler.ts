@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { EntityNotFoundError } from "typeorm";
 import { ValidationError } from "class-validator";
-import { ResponseUtil } from "../utils/Response";
+import { ResponseUtil } from "../../utils/Response";
 
 export class ErrorHandler {
     static catchErrors(fn) {

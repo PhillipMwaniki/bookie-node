@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { DbTable } from '../constants/DbTable';
+import { DbTable } from '../../constants/DbTable';
 
 @Entity({ name: DbTable.AUTHORS })
 export class Author {

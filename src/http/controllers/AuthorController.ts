@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { AppDataSource } from "../database/data-source";
-import { Author } from "../entities/Author";
-import { ResponseUtil } from "../utils/Response";
-import { Paginator } from "../database/Paginator";
-import { CreateAuthorDTO, UpdateAuthorDTO } from '../dtos/CreateAuthorDTO';
+import { AppDataSource } from "../../database/data-source";
+import { Author } from "../../database/entities/Author";
+import { ResponseUtil } from "../../utils/Response";
+import { Paginator } from "../../database/Paginator";
+import { CreateAuthorDTO, UpdateAuthorDTO } from '../../dtos/CreateAuthorDTO';
 import { validate, validateOrReject } from "class-validator";
 
 export default class AuthorController {
