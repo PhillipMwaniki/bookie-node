@@ -14,5 +14,10 @@ router.post(
   FileUploader.upload("image", "authors", 2 * 1024 * 1024),
   ErrorHandler.handleErrors(authorController.create),
 );
+router.put(
+  "/:id",
+  FileUploader.upload("image", "authors", 2 * 1024 * 1024),
+  ErrorHandler.handleErrors(authorController.update),
+);
 
 export default router;

@@ -17,3 +17,21 @@ export class CreateAuthorDTO {
     @MaxLength(200)
     bio: string;
 }
+
+export class UpdateAuthorDTO {
+
+    @IsNotEmpty()
+    @IsString()
+    @MinLength(3)
+    @MaxLength(30)
+    name: string;
+
+    @IsNotEmpty()
+    @IsEmail()
+    email: string;
+
+    @IsString()
+    @IsOptional()
+    @MaxLength(200)
+    bio: string;
+}
