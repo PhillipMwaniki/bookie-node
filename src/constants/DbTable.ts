@@ -1,1 +1,4 @@
-export const AUTHORS = "authors";
+export enum DbTable {
+    AUTHORS = "authors",
+    BOOKS = "books"
+}
