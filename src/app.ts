@@ -28,6 +28,10 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     return ResponseUtil.sendErrorResponse(res, "Resource not found", 404, null);
   }
 
+  if (err.message === "Invalid file type") {
+    return ResponseUtil.sendErrorResponse(res, "Invalid file type", 422, null);
+  }
+
   return res.status(500).send({
     success: false,
     message: "Something went wrong",
