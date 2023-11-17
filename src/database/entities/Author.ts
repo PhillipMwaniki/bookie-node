@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { DbTable } from '../../constants/DbTable';
+import { Book } from './Book';
 
 @Entity({ name: DbTable.AUTHORS })
 export class Author {
@@ -20,8 +21,11 @@ export class Author {
     image: string;
 
     @CreateDateColumn()
-    created_at: string;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updated_at: string;
+    updated_at: Date;
+
+    @OneToMany((type) => Book, (book) => book.author)
+    books: Book[];
 }
