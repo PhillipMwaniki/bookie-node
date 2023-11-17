@@ -4,7 +4,7 @@ import { Author } from "../../database/entities/Author";
 import { ResponseUtil } from "../../utils/Response";
 import { Paginator } from "../../database/Paginator";
 import { CreateAuthorDTO, UpdateAuthorDTO } from '../dtos/CreateAuthorDTO';
-import { validate, validateOrReject } from "class-validator";
+import { validate } from "class-validator";
 
 export default class AuthorController {
   async getAuthors(req: Request, res: Response) {
@@ -69,6 +69,7 @@ export default class AuthorController {
 
     const dto = new UpdateAuthorDTO();
     Object.assign(dto, authorData);
+    dto.id = parseInt(id);
 
     const errors = await validate(dto);
 
