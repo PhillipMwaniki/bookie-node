@@ -1,6 +1,8 @@
 import { IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
+import { Author } from "../../database/entities/Author";
 import { Book } from "../../database/entities/Book";
 import { IsUnique } from "../validators/IsUniqueValidator";
+import { ItExists } from "../validators/ItExistsValidator";
 
 export class CreateBookDTO {
 
@@ -15,6 +17,7 @@ export class CreateBookDTO {
 
     @IsNotEmpty()
     @IsNumber()
+    @ItExists(Author, "id")
     authorId: number;
 
     @IsString()
