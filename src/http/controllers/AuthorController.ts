@@ -3,7 +3,7 @@ import { AppDataSource } from "../../database/data-source";
 import { Author } from "../../database/entities/Author";
 import { ResponseUtil } from "../../utils/Response";
 import { Paginator } from "../../database/Paginator";
-import { CreateAuthorDTO, UpdateAuthorDTO } from '../dtos/CreateAuthorDTO';
+import { CreateAuthorDTO, UpdateAuthorDTO } from '../dtos/AuthorDTO';
 import { validate, validateOrReject } from "class-validator";
 
 export default class AuthorController {
