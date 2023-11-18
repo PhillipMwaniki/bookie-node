@@ -1,4 +1,5 @@
 import express from "express";
+import { AdminMiddleware } from "../http/middlewares/AdminMiddleware";
 import { AuthMiddleware } from "../http/middlewares/AuthMiddleware";
 import { ErrorHandler } from "../http/middlewares/ErrorHandler";
 import { FileUploader } from "../http/middlewares/FileUploader";
@@ -24,6 +25,7 @@ router.put(
 );
 router.delete("/:id",
     ErrorHandler.catchErrors(AuthMiddleware.authenticate),
+    ErrorHandler.catchErrors(AdminMiddleware.check),
     ErrorHandler.catchErrors(bookController.delete)
 );
 
