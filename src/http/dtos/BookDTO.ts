@@ -1,6 +1,6 @@
-import { IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
+import { IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
+import { Book } from "../../database/entities/Book";
 import { IsUnique } from "../validators/IsUniqueValidator";
-import { Author } from "../../database/entities/Author";
 
 export class CreateBookDTO {
 
@@ -8,6 +8,7 @@ export class CreateBookDTO {
 
     @IsNotEmpty()
     @IsString()
+    @IsUnique(Book, "title")
     @MinLength(3)
     @MaxLength(30)
     title: string;
@@ -39,7 +40,12 @@ export class UpdateBookDTO {
     id?: number;
 
     @IsNotEmpty()
+    @IsNumber()
+    authorId: number;
+
+    @IsNotEmpty()
     @IsString()
+    @IsUnique(Book, "title")
     @MinLength(3)
     @MaxLength(30)
     title: string;
@@ -58,6 +64,6 @@ export class UpdateBookDTO {
     category: string;
 
     @IsString()
-    @IsNotEmpty()
+    @IsOptional()
     image: string;
 }

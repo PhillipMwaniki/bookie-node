@@ -64,10 +64,13 @@ export default class BookController {
     async update(req: Request, res: Response): Promise<Response> {
         const id = req.params.id;
         const bookData = req.body;
-
+        bookData.authorId = parseInt(bookData.authorId);
+        bookData.price = parseInt(bookData.price);
         const dto = new UpdateBookDTO();
         Object.assign(dto, bookData);
         dto.id = parseInt(id);
+
+        console.log(dto);
 
         await validateOrReject(dto);
 
