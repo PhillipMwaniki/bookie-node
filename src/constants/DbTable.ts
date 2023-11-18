@@ -1,4 +1,5 @@
 export enum DbTable {
     AUTHORS = "authors",
-    BOOKS = "books"
+    BOOKS = "books",
+    USERS = "users",
 }
